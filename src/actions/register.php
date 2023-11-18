@@ -9,17 +9,32 @@ $surname = $_POST["surname"] ?? null;
 $groups = $_POST["groups"] ?? null;
 $ticket = $_POST["ticket"] ?? null;
 
-
-// some validation
 $_SESSION["valid"] = [];
+addOldValue('first_name', $first_name);
+addOldValue("last_name", $last_name);
+addOldValue("groups", $groups);
+addOldValue("ticket", $ticket);
 
 if (empty($first_name)) {
-   $_SESSION['valid']['first_name'] = 'Пустое поле';
+
+   addError("first_name", "Заполните имя!");
+}
+if (empty($last_name)) {
+  
+   addError("last_name", "Заполните фамилию!");
+}
+if (empty($groups)) {
+   
+   addError("groups", "Заполните группу!");
+}
+if (!strlen($ticket) == 6) {
+   addError("ticket", "Укажите правильный номер билета!");
+}
+if (empty($ticket)) {
+  
+   addError("ticket", "Укажите номер билета!");
 }
 
-// if (empty($groups) || empty($ticket)) {
-//    $_SESSION["valid"][$groups][$ticket] = "Проверьте корректность данных";
-// }
 
 if (!empty($_SESSION["valid"])){
    redirect("/register.php");

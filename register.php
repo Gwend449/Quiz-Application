@@ -23,49 +23,48 @@ require_once __DIR__."/src/helpers.php";
             <div class="mb-2">
                <h2 class="text-center">Регистрация</h2>
             </div>
-            <div style="width: 40%;" class="row border py-1 pb-2">
+            <div style="width: 50%;" class="row border py-1 pb-2">
                <form class="row gx-2" action="src/actions/register.php" method="post" enctype="multipart/form-data">
+
                   <div class="mb-3">
                      <label for="first_name" class="form-label">Имя</label>
-                     <input type="text" name="first_name" class="form-control <?php echo checkValid() ?>" id="first_name"
-                        placeholder="Иван" >
+                     <input type="text" value="<?php echo old('first_name')?>" name="first_name" class="form-control <?php echo checkValid('first_name') ?>" id="first_name" placeholder="Иван" >
                      <div class="invalid-feedback">
-                        <?php echo displayError("first_name");?>
+                        <?php echo getErrorMessage("first_name");?>
                      </div>
                   </div>
                   <div class="mb-3">
                      <label for="last_name" class="form-label">Фамилия</label>
-                     <input type="text" name="last_name" class="form-control is-invalid" id="last_name" placeholder="Иванов">
-                     <div class="invalid-feedback">Пожалуйста заполните пустое поле</div>
+                     <input type="text" value="<?php echo old('last_name')?>" name="last_name" class="form-control <?php echo checkValid('last_name') ?>" id="last_name" placeholder="Иванов">
+                     <div class="invalid-feedback">
+                        <?php echo getErrorMessage("last_name");?>
+                     </div>
                   </div>
                   <div class="mb-3">
                      <label for="surname" class="form-label">Отчество</label>
-                     <input type="text" name="surname" class="form-control is-invalid" id="surname" placeholder="Иванович">
-                     <div class="invalid-feedback">Пожалуйста заполните пустое поле</div>
+                     <input type="text" name="surname" class="form-control" id="surname" placeholder="Иванович">
                   </div>
                   <div class="col mb-3">
-                     <label for="surname" class="form-label">Группа</label>
-                     <input type="text" name="groups" class="form-control is-invalid" id="groups">
-                     <div class="invalid-feedback">Пожалуйста заполните пустое поле</div>
-                  </div>
-                  <div class="col mb-3">
-                     <label for="ticket" class="form-label">Номер студенческого билета</label>
-                     <input type="text" name="ticket" class="form-control is-invalid" id="ticket" >
-                     <div class="invalid-feedback">Пожалуйста укажите действующий номер студ. билета</div>
-                  </div>
-                  <!-- <div class="md-6 mb-3">
-                     <label for="test" class="form-label">City</label>
-                     <input type="text" class="form-control" id="test"
-                        required>
-                     <div id="validationServer03Feedback" class="invalid-feedback">
-                        Please provide a valid city.
+                     <label for="groups" class="form-label">Группа</label>
+                     <input type="text" value="<?php echo old('groups')?>" name="groups" class="form-control <?php echo checkValid('groups')?>" id="groups">
+                     <div class="invalid-feedback">
+                        <?php echo getErrorMessage("groups")?>
                      </div>
-                  </div> -->
+                  </div>
+                  <div class="col mb-3">
+                     <label for="ticket" class="form-label">Студенческий билет</label>
+                     <input type="text" value="<?php echo old('ticket')?>" name="ticket" class="form-control <?php echo checkValid('ticket')?>" id="ticket">
+                     <div class="invalid-feedback">
+                        <?php echo getErrorMessage("ticket"); ?>
+                     </div>
+                  </div>
+
                   <div class="">
                      <button type="submit" class="btn btn-primary">Регистрация</button>
                   </div>
 
                </form>
+               <?php clearValid();?>
             </div>
          </div>
       </div>
