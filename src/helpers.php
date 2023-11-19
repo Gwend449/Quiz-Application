@@ -1,6 +1,12 @@
 <?php 
-
+require_once __DIR__.'/config.php';
 session_start();
+
+// $host = DB_HOST;
+// $dbname = DB_NAME;
+// $port = DB_PORT;
+// $userdb = DB_USERNAME;
+// $passdb = DB_PASSWORD;
 
 function redirect(string $path)
 {
@@ -40,4 +46,14 @@ function old(string $key)
 function clearValid()
 {
    $_SESSION['valid'] = [];
+}
+
+//postgre
+function getPDO() : PDO
+{
+   try {
+      return new PDO('pgsql:host='. DB_HOST .';port='. DB_PORT .';dbname='. DB_NAME, DB_USERNAME, DB_PASSWORD);
+   } catch (PDOException $th) {
+      die("Connection error: " . $th->getMessage());
+   }
 }
