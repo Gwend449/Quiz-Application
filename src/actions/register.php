@@ -54,3 +54,5 @@ try {
 } catch (\Throwable $th) {
    die($th->getMessage());
 }
+
+redirect('/');
