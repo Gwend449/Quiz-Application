@@ -1,9 +1,6 @@
 <?php
 require_once __DIR__ . '/src/helpers.php';
 
-echo '<pre>';
-var_dump($_SESSION["message"]);
-echo '</pre>';
 
 ?>
 
@@ -27,11 +24,13 @@ echo '</pre>';
             </div>
 
             <div style="width: 40%;" class="row border py-1 pb-2">
+
                <?php if (hasMessage('error')): ?>
-                  <div style="margin: 3% auto;" class="alert alert-danger w-75" role="alert">
-                     <?php getMessage('error')?>
+                  <div style="margin: 3% auto;" class="alert alert-danger" role="alert">
+                     <?php echo getMessage('error')?>
                   </div>
                <?php endif; ?>
+
                <form class="row" method="post" action="src/actions/login.php">
                   <div class="mb-3">
                      <label for="first_name" class="form-label">Имя</label>
