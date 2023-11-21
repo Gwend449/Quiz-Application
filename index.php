@@ -1,5 +1,10 @@
 <?php
 require_once __DIR__ . '/src/helpers.php';
+
+echo '<pre>';
+var_dump($_SESSION["message"]);
+echo '</pre>';
+
 ?>
 
 <!DOCTYPE html>

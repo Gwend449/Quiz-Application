@@ -4,6 +4,11 @@ require_once __DIR__ . '/../helpers.php';
 
 $ticket = $_POST["ticket"] ?? null;
 
+if(empty($ticket)) {
+   setMessage('error', "Номер студенческого билета не указан");
+   redirect('/');
+}
+
 $pdo = getPDO();
 
 $stmt = $pdo->prepare("SELECT * FROM users WHERE ticket = :ticket");
@@ -14,3 +19,4 @@ if (!$user) {
    setMessage('error', "Пользователь $ticket не найден");
    redirect ('/');
 }
+

@@ -70,7 +70,7 @@ function hasMessage(string $key): bool
 
 function getMessage(string $key) : string
 {
-   $message = $_SESSION["message"][$key] ?? null;
+   $message = $_SESSION["message"][$key] ?? '';
    unset($_SESSION["message"][$key]);
    return $message;
 }
