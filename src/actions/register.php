@@ -1,19 +1,15 @@
 <?php
-require_once __DIR__ ."/../helpers.php";
+require_once __DIR__ . "/../helpers.php";
 
 
 
 $first_name = $_POST['first_name'] ?? null;
-$last_name = $_POST["last_name"] ?? null ;
+$last_name = $_POST["last_name"] ?? null;
 $surname = $_POST["surname"] ?? null;
 $groups = $_POST["groups"] ?? null;
 $ticket = $_POST["ticket"] ?? null;
 
 $_SESSION["valid"] = [];
-addOldValue('first_name', $first_name);
-addOldValue("last_name", $last_name);
-addOldValue("groups", $groups);
-addOldValue("ticket", $ticket);
 
 if (empty($first_name)) {
    addError("first_name", "Заполните имя!");
@@ -32,7 +28,11 @@ if (empty($ticket)) {
 }
 
 
-if (!empty($_SESSION["valid"])){
+if (!empty($_SESSION["valid"])) {
+   addOldValue('first_name', $first_name);
+   addOldValue("last_name", $last_name);
+   addOldValue("groups", $groups);
+   addOldValue("ticket", $ticket);
    redirect("/register.php");
 }
 

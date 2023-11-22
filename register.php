@@ -1,7 +1,7 @@
 <?php 
-
 require_once __DIR__."/src/helpers.php";
 
+checkGuest();
 ?>
 
 
@@ -53,7 +53,7 @@ require_once __DIR__."/src/helpers.php";
                   </div>
                   <div class="col mb-3">
                      <label for="ticket" class="form-label">Студенческий билет</label>
-                     <input type="text" value="<?php echo old('ticket')?>" name="ticket" class="form-control <?php echo checkValid('ticket')?>" id="ticket">
+                     <input type="number" value="<?php echo old('ticket')?>" name="ticket" class="form-control <?php echo checkValid('ticket')?>" id="ticket">
                      <div class="invalid-feedback">
                         <?php echo getErrorMessage("ticket"); ?>
                      </div>
