@@ -56,10 +56,10 @@ checkGuest();
                         <?php echo getErrorMessage("ticket"); ?>
                      </div>
                   </div>
-                  <div class="col">
+                  <div class="col-auto">
                      <button type="submit" class="btn btn-primary">Войти</button>
                   </div>
-                  <div class="col-auto form-text">
+                  <div class="col form-text">
                      <span class="align-middle ">Нет аккаунта? <a class="link-offset-2"
                            href="register.php">Регистрация</a></span>
                   </div>

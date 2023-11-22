@@ -8,7 +8,7 @@ function redirect(string $path)
    die();
 }
 
-function getErrorMessage($value)
+function getErrorMessage($value): string
 {
    $message = $_SESSION["valid"][$value] ?? "";
    unset($_SESSION["valid"][$value]);
