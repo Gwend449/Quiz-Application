@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/src/helpers.php';
 
-
+checkGuest();
 ?>
 
 <!DOCTYPE html>
@@ -50,16 +50,16 @@ require_once __DIR__ . '/src/helpers.php';
                   </div>
                   <div class="mb-3">
                      <label for="ticket" class="form-label">Номер студенческого билета</label>
-                     <input type="text" value="<?php echo old('ticket') ?>" name="ticket"
+                     <input type="number" value="<?php echo old('ticket') ?>" name="ticket"
                         class="form-control <?php echo checkValid('ticket') ?>" id="ticket">
                      <div class="invalid-feedback">
                         <?php echo getErrorMessage("ticket"); ?>
                      </div>
                   </div>
-                  <div class="col">
+                  <div class="col-auto">
                      <button type="submit" class="btn btn-primary">Войти</button>
                   </div>
-                  <div class="col-auto form-text">
+                  <div class="col form-text">
                      <span class="align-middle ">Нет аккаунта? <a class="link-offset-2"
                            href="register.php">Регистрация</a></span>
                   </div>

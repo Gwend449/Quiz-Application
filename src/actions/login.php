@@ -2,25 +2,41 @@
 
 require_once __DIR__ . '/../helpers.php';
 
-$ticket = $_POST["ticket"] ?? " ";
+
+$ticket = $_POST["ticket"] ?? null;
+$first_name = $_POST["first_name"] ?? null;
+$last_name = $_POST["last_name"] ?? null;
+
+// TODO: validation ticket input via JS number only
+// TODO: save old input values after validation
+// TODO: all empty fields validation
 
 if(empty($ticket)) {
-   setMessage('error', "Номер студенческого билета не указан");
+   addOldValue('ticket', $ticket);
+   addError('ticket', 'Укажите номер студенческого билета');
+   setMessage('error', "Ошибка! Проверьте введенные данные!");
    redirect('/');
 }
 
-$pdo = getPDO();
+$user = findUser($ticket);
 
-$stmt = $pdo->prepare("SELECT * FROM users WHERE ticket = :ticket");
-$stmt->execute(['ticket' => $ticket]);
-$user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-echo '<pre>';
-var_dump($user);
-echo '</pre>';
-
-if (!$user) {
+if ((!$user) || empty($user)) {
+   addError('ticket', "Билет указан неверно!");
    setMessage('error', "Пользователь $ticket не найден");
    redirect ('/');
 }
 
+if ($first_name != $user['first_name'] || $last_name != $user['last_name'])
+{
+   addOldValue('first_name', $first_name);
+   addOldValue('last_name', $last_name);
+   addOldValue('ticket', $ticket);
+   addError('first_name', 'Неверное имя');
+   addError('last_name', 'Неверная фамилия');
+   setMessage('error', "Имя или фамилия указаны неверно!");
+   redirect ('/');
+}
+
+$_SESSION["user"]['id'] = $user['id'];
+redirect('/home.php');
