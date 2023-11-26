@@ -1,0 +1,15 @@
+{
+    "name": "nlyap/quiz_app",
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "Nikita",
+            "email": "nlyapin2013@yandex.ru"
+        }
+    ],
+    "require": {}
+}

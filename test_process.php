@@ -1,15 +1,14 @@
 <?php 
 
-require_once __DIR__ . 'Quiz.php';
-require_once __DIR__ . 'components/questions.php';
 
-$testId = $_GET["test_id"] ?? null;
+$testId = $_POST["test_id"] ?? null;
 
 switch ($testId) {
    case 'test1':
       $questions = $questionsTest1;
       break;
-   
+   case 'test2':
+      $questions = $questionsTest2;
    
    default:
       echo "Invalid Test ID";

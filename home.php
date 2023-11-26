@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/src/helpers.php';
+require_once __DIR__ . 'vendor/autoload.php';
 $user = currentUser();
 ?>
 
@@ -61,7 +61,10 @@ $user = currentUser();
                         <h4>Часть I</h4>
                      </div>
                      <div class="col">
-                        <a class="btn btn-sm btn-success" href="/chapters/test1.php" role="button">Начать тест</a>
+                        <form class="d-inline-block" action="test_process.php">
+                           <input type="hidden" name="test_id" value="test1">
+                           <a class="btn btn-sm btn-success" href="test_process.php" role="button">Начать тест</a>
+                        </form>
                      </div>
                   </div>
 
@@ -154,7 +157,18 @@ $user = currentUser();
                   </p>
                </div>
                <div id="item-2">
-                  <h4>Часть II</h4>
+                  <div class="row mb-2">
+                     <div class="col-auto">
+                        <h4>Часть II</h4>
+                     </div>
+                     <div class="col">
+                        <form class="d-inline-block" action="test_process.php">
+                           <input type="hidden" name="test_id" value="test2">
+                           <a class="btn btn-sm btn-success" href="test_process.php" role="button">Начать тест</a>
+                        </form>
+                     </div>
+                  </div>
+
                   <div class="accordion" id="accordionExample">
                      <div class="accordion-item">
                         <h2 class="accordion-header">

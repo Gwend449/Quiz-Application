@@ -1,4 +1,5 @@
 <?php
+namespace app\components;
 
 $questionsTest1 = array(
    array(
