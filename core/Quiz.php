@@ -1,5 +1,7 @@
 <?php
 
+namespace app\core;
+
 class Quiz
 {
    private $questions;
