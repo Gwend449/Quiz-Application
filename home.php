@@ -1,6 +1,9 @@
 <?php
-require_once __DIR__ . 'vendor/autoload.php';
-$user = currentUser();
+session_start();
+require_once __DIR__ . '/vendor/autoload.php';
+use app\core\AuthController;
+$auth = new AuthController();
+$user = $auth->currentUser();
 ?>
 
 <!DOCTYPE html>
@@ -61,9 +64,9 @@ $user = currentUser();
                         <h4>Часть I</h4>
                      </div>
                      <div class="col">
-                        <form class="d-inline-block" action="test_process.php">
+                        <form class="d-inline-block" action="test_page.php" method="get">
                            <input type="hidden" name="test_id" value="test1">
-                           <a class="btn btn-sm btn-success" href="test_process.php" role="button">Начать тест</a>
+                           <button type="submit" class="btn btn-sm btn-success">Начать тест</button>
                         </form>
                      </div>
                   </div>
@@ -162,9 +165,9 @@ $user = currentUser();
                         <h4>Часть II</h4>
                      </div>
                      <div class="col">
-                        <form class="d-inline-block" action="test_process.php">
+                        <form class="d-inline-block" action="test_page.php" method="get">
                            <input type="hidden" name="test_id" value="test2">
-                           <a class="btn btn-sm btn-success" href="test_process.php" role="button">Начать тест</a>
+                           <button type="submit" class="btn btn-sm btn-success">Начать тест</button>
                         </form>
                      </div>
                   </div>
@@ -356,7 +359,7 @@ $user = currentUser();
    </div>
    <?php
    require_once __DIR__ . '/assets/footer.php';
-   require_once __DIR__ . '/components/script.php';
+   require_once __DIR__ . '/assets/script.php';
    ?>
 </body>
 

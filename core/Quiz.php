@@ -5,13 +5,14 @@ namespace app\core;
 class Quiz
 {
    private $questions;
+   protected $score = 0;
 
-   public function __construct(array $questions)
+   public function __construct($questions = [] ?? null)
    {
       $this->questions = $questions;
    }
 
-   function displayQuestion($questionData, $questionNumber)
+   public function displayQuestion($questionData, $questionNumber)
    {
       echo "<p>$questionNumber. {$questionData['question']}</p>";
       foreach ($questionData['options'] as $optionKey => $optionValue) {
@@ -20,36 +21,22 @@ class Quiz
       echo "<br>";
    }
 
-   function handleForm($questions)
+   public function handleForm($questions, $questionNumber)
    {
       $score = 0;
-      $userAnswers = $_POST["user_answers"] ?? array();
+      $questionData = $questions[$questionNumber] ?? [];
+      $correctAnswers = $questionData['correct_answer'] ?? [];
 
-      foreach ($questions as $questionsNumber => $questionData) {
-         $correctAnswers = $questionData['correct_answer'];
-
-         if (
-            count($userAnswers[$questionsNumber]) === count($correctAnswers) &&
-            empty(array_diff($userAnswers[$questionData[$questionsNumber]], $correctAnswers))
-         ) {
-            $score++;
-         }
+      $userAnswer = $_POST["user_answers"][$questionNumber] ?? [];
+      if (is_array($userAnswer) && count(array_diff($userAnswer, $correctAnswers)) === 0) {
+         $score++;
       }
+      $_SESSION["quiz_score"] = $score;
+   }
 
-      echo "Your score: $score out of " . count($questions);
-
-      foreach ($questions as $questionNumber => $questionData) {
-         echo "<p>Question $questionNumber: ";
-         if (
-            count($userAnswers[$questionNumber]) === count($questionData['correct_answer']) &&
-            empty(array_diff($userAnswers[$questionData[$questionsNumber]], $questionData['correct_answer']))
-         ) {
-            echo "Correct";
-         } else {
-            echo "Incorrect";
-         }
-         echo "</p";
-      }
+   public function getScore()
+   {
+      return $this->score;
    }
 
 }

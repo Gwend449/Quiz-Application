@@ -4,9 +4,13 @@ namespace app\core;
 
 class Questions
 {
-   private static function getQuestions($testId)
+
+   private $questionsTest1 = [];
+   private $questionsTest2 = [];
+
+   public function __construct()
    {
-      $questionsTest1 = array(
+      $this->questionsTest1 = array(
          array(
             'question' => 'Какой из перечисленных ниже протоколов относится к транспортному (transport) уровню модели TCP/IP? (Выберите два ответе)?',
             'options' => array('A' => 'Ethernet', 'B' => 'HTTP', 'C' => 'IP', 'D' => 'UDP', 'E' => 'SMTP', 'F' => 'TCP'),
@@ -19,8 +23,7 @@ class Questions
          ),
       );
 
-
-      $questionsTest2 = array(
+      $this->questionsTest2 = array(
          array(
             'question' => 'В локальной сети малого офиса некоторые пользовательские утройства подключены к сети LAN по кабелю, а другие по беспроводной технологии (без кабеля). Что истинно из следующего, если в локальной сети используется Ethernet?',
             'options' => array('A' => 'Ethernet используют только устройства, подключенные по кабелю', 'B' => 'Ethernet используют только устройства, подключенные по беспроводной технологии.', 'C' => 'Ethernet используют все устройства, и подключенные по кабелю и беспроводной технологии.', 'D' => 'Ни одно из устройств не использует Ethernet'),
@@ -32,12 +35,14 @@ class Questions
             'correct_answer' => array('C')
          ),
       );
-
+   }
+   public function getQuestions($testId)
+   {
       switch ($testId) {
          case 'test1':
-            return $questionsTest1;
+            return $this->questionsTest1;
          case 'test2':
-            return $questionsTest2;
+            return $this->questionsTest2;
          default:
             return "Invalid Test ID";
       }

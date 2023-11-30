@@ -11,7 +11,6 @@ class Database {
       $dbDsn = $config['dsn'] ?? '';
       $username = $config['username'] ?? '';
       $password = $config['password'] ?? '';
-
       $this->pdo = new \PDO($dbDsn, $username, $password);
       $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
    }
@@ -20,4 +19,5 @@ class Database {
    {
       return $this->pdo->prepare($sql);
    }
+
 }

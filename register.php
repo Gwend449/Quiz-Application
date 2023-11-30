@@ -1,7 +1,14 @@
 <?php
-require_once __DIR__ . "/src/helpers.php";
 session_start();
-checkGuest();
+require_once __DIR__ . 'vendor/autoload.php';
+use app\core\AuthController;
+$auth = new AuthController();
+$user = $auth->checkGuest();
+
+if ($user)
+{
+   $auth->redirect('/home.php');
+}
 ?>
 
 
@@ -28,18 +35,18 @@ checkGuest();
 
                   <div class="mb-3">
                      <label for="first_name" class="form-label">Имя</label>
-                     <input type="text" value="<?php echo old('first_name') ?>" name="first_name"
-                        class="form-control <?php echo checkValid('first_name') ?>" id="first_name" placeholder="Иван">
+                     <input type="text" value="<?php echo $auth->old('first_name') ?>" name="first_name"
+                        class="form-control <?php echo $auth->checkValid('first_name') ?>" id="first_name" placeholder="Иван">
                      <div class="invalid-feedback">
-                        <?php echo getErrorMessage("first_name"); ?>
+                        <?php echo $auth->getErrorMessage("first_name"); ?>
                      </div>
                   </div>
                   <div class="mb-3">
                      <label for="last_name" class="form-label">Фамилия</label>
-                     <input type="text" value="<?php echo old('last_name') ?>" name="last_name"
-                        class="form-control <?php echo checkValid('last_name') ?>" id="last_name" placeholder="Иванов">
+                     <input type="text" value="<?php echo $auth->old('last_name') ?>" name="last_name"
+                        class="form-control <?php echo $auth->checkValid('last_name') ?>" id="last_name" placeholder="Иванов">
                      <div class="invalid-feedback">
-                        <?php echo getErrorMessage("last_name"); ?>
+                        <?php echo $auth->getErrorMessage("last_name"); ?>
                      </div>
                   </div>
                   <div class="mb-3">
@@ -49,18 +56,18 @@ checkGuest();
                   <div class="row gx-2">
                      <div class="col-auto mb-3">
                         <label for="groups" class="form-label">Группа</label>
-                        <input type="text" value="<?php echo old('groups') ?>" name="groups"
-                           class="form-control <?php echo checkValid('groups') ?>" id="groups">
+                        <input type="text" value="<?php echo $auth->old('groups') ?>" name="groups"
+                           class="form-control <?php echo $auth->checkValid('groups') ?>" id="groups">
                         <div class="invalid-feedback">
-                           <?php echo getErrorMessage("groups") ?>
+                           <?php echo $auth->getErrorMessage("groups") ?>
                         </div>
                      </div>
                      <div class="col mb-3">
                         <label for="ticket" class="form-label">Студенческий билет</label>
-                        <input type="number" value="<?php echo old('ticket') ?>" name="ticket"
-                           class="form-control <?php echo checkValid('ticket') ?>" id="ticket">
+                        <input type="number" value="<?php echo $auth->old('ticket') ?>" name="ticket"
+                           class="form-control <?php echo $auth->checkValid('ticket') ?>" id="ticket">
                         <div class="invalid-feedback">
-                           <?php echo getErrorMessage("ticket"); ?>
+                           <?php echo $auth->getErrorMessage("ticket"); ?>
                         </div>
                      </div>
                   </div>
@@ -72,7 +79,7 @@ checkGuest();
                      <span class="align-middle ">Уже есть аккаунт? <a class="link-offset-2" href="/">Войти</a></span>
                   </div>
                </form>
-               <?php clearValid(); ?>
+               <?php $auth->clearValid(); ?>
             </div>
          </div>
       </div>
