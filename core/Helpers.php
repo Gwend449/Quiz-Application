@@ -1,14 +1,7 @@
 <?php
 
 namespace app\core;
-
-use PDO;
-
-
-require_once __DIR__ . '/config.php';
 session_start();
-
-
 class Helpers
 {
    protected function redirect(string $path)

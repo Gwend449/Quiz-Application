@@ -1,6 +1,7 @@
 <?php
 
 namespace app\core;
+require_once __DIR__ . '/../src/config.php';
 
 class Database {
    
@@ -8,8 +9,8 @@ class Database {
    public function __construct($config = [])
    {
       $dbDsn = $config['dsn'] ?? '';
-      $username = $config['dsn'] ?? '';
-      $password = $config['dsn'] ?? '';
+      $username = $config['username'] ?? '';
+      $password = $config['password'] ?? '';
 
       $this->pdo = new \PDO($dbDsn, $username, $password);
       $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
