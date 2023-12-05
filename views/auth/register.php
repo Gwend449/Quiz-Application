@@ -9,6 +9,12 @@ if ($user)
 {
    $auth->redirect('/home.php');
 }
+if (!$user)
+{
+   if ($_SERVER["REQUEST_METHOD"] === 'POST') {
+      $auth->register();
+  }
+}
 ?>
 
 
